@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/a1316b0e7e.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="headbar">
+        <div class="dropdown">
+            <button class="dropbtn"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-content">
+              <p onclick="renderExpenses('fun')">Fun</p>
+              <p onclick="renderExpenses('food')">Food</p>
+              <p onclick="renderExpenses('rent')">Rent</p>
+              <p onclick="renderExpenses('bills')">Bills</p>
+              <p onclick="renderExpenses('misc')">Misc</p>
+              <p onclick="renderExpenses('all')">All</p>
+            </div>
+          </div>
+    </div>
+    <div id="container"></div>
+    
+    <script id="see-template" type="text/x-handlebars-template">
+        <div id="see">
+            <div id="date-input">
+                <label for="start-date">Start Date:</label>
+                <label for="end-date">End Date:</label>
+            <input type="date" id="start-date">
+            <input type="date" id="end-date">
+            </div>
+            <button id="date-range" onclick="dateRange()">Set Date Range</button>
+            <h2>{{group}}</h2>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+                {{#each expenses}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{group}}</td>
+                    <td>{{amount}} ₪</td>
+                    <td>{{date}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+        <div class="float" onclick="renderer.renderAdd()"><i class="fa fa-plus"></i></div>
+    </script>
+    <script id="add-template" type="text/x-handlebars-template">
+        <div id="add">
+            <h2>Add Expense</h2>
+            <form>
+                <input type="text" placeholder="Name">
+                <input type="number" placeholder="Amount" id="amount">
+                <select>
+                    <option value="fun">Fun</option>
+                    <option value="food">Food</option>
+                    <option value="rent">Rent</option>
+                    <option value="bills">Bills</option>
+                    <option value="misc">Misc</option>
+                </select>
+                <input type="date" id="date-select">
+                <button onclick="addExpense()">Add</button>
+            </form>
+        </div>
+        <div class="float" onclick="renderer.renderAdd()"><i class="fa fa-plus"></i></div>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.js" integrity="sha512-z8IfZLl5ZASsWvr1syw5rkpo2HKBexjwzYDaUkIfoWo0aEqL/MgGKniDouh5DmsD9YrisbM+pihyCKIHL9VucQ==" crossorigin="anonymous"></script>
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="/handlebars/dist/handlebars.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="ExpenseManager.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
