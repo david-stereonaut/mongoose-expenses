@@ -156,61 +156,6 @@ router.get('/expenses/:group/:total/:d1?/:d2?', function(req, res) {
             }
         }
     }
-    // if (req.params.total === "true") {
-    //     if (req.params.d1) {
-    //         d1 = moment(req.params.d1).format('LLLL')
-    //         if(req.params.d2) {
-    //             d2 = moment(req.params.d2).format('LLLL')
-    //             Expense.aggregate([
-    //                 { $match: { date: { $gte: new Date(d1), $lt: new Date(d2)}, group: req.params.group } },
-    //                 { $group: {
-    //                     _id: null,
-    //                     totalExpenses: { $sum: "$amount" }
-    //                 }}
-    //             ]).exec().then(function(result){
-    //                 res.send(result)
-    //             })
-    //         } else {
-    //             Expense.aggregate([
-    //                 { $match: { group: req.params.group, date: { $gte: new Date(d1)} } },
-    //                 { $group: {
-    //                     _id: null,
-    //                     totalExpenses: { $sum: "$amount" }
-    //                 }}
-    //             ]).then(function(result){
-    //                 res.send(result)
-    //             })
-    //         }
-    //     } else {
-    //         Expense.aggregate([
-    //             { $match: { group: req.params.group } },
-    //             { $group: {
-    //                 _id: null,
-    //                 totalExpenses: { $sum: "$amount" }
-    //             }}
-    //         ]).then(function(result){
-    //             res.send(result)
-    //         })
-    //     }
-    // } else {
-    //     if (req.params.d1) {
-    //         d1 = moment(req.params.d1).format('LLLL')
-    //         if(req.params.d2) {
-    //             d2 = moment(req.params.d2).format('LLLL')
-    //             Expense.find({ group: req.params.group, date: { $gte: d1, $lte: d2} }).sort({ date: -1 }).then(function(err, results) {
-    //                 res.send(results)
-    //             })
-    //         } else {
-    //             Expense.find({ group: req.params.group, date: { $gte: d1 } }).sort({ date: -1 }).then(function(err, results) {
-    //                 res.send(results)
-    //             })
-    //         }
-    //     } else {
-    //         Expense.find({ group: req.params.group }).sort({ date: -1 }).then(function(err, results) {
-    //             res.send(results)
-    //         })
-    //     }
-    // }
 })
 
 module.exports = router
